@@ -56,3 +56,9 @@ arrowRight.addEventListener('click', () => {
     updateSlide();
 });
 updateSlide();
+
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length; // Passe à l'image suivante
+    updateSlide(); // Met à jour l'affichage
+}, 3000); // Intervalle de 3 secondes (3000 ms)
+
