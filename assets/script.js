@@ -37,7 +37,6 @@ slides.forEach((slide, index) => {
 
 const dots = document.querySelectorAll('.dot');
 
-
 function updateSlide() {
     bannerImg.src = `./assets/images/slideshow/${slides[currentIndex].image}`;
     bannerTagline.innerHTML = slides[currentIndex].tagLine;
@@ -47,16 +46,13 @@ function updateSlide() {
         dot.classList.toggle('dot_selected', index === currentIndex);
     });
 }
-
 // clics avec les fleche 
 arrowLeft.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + slides.length) % slides.length; 
     updateSlide();
 });
-
 arrowRight.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % slides.length; 
     updateSlide();
 });
-
 updateSlide();
