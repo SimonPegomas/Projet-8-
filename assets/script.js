@@ -17,16 +17,46 @@ const slides = [
 	}
 ]
 
+let currentIndex = 0;
+
+const bannerImg = document.querySelector('.banner-img');
+const bannerTagline = document.querySelector('#banner p');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
+const dotsContainer = document.querySelector('.dots');
 
+// Debut du defilement 
+slides.forEach((slide, index) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (index === 0) {
+        dot.classList.add('dot_selected'); // Marque le premier point comme actif
+    }
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+
+function updateSlide() {
+    bannerImg.src = `./assets/images/slideshow/${slides[currentIndex].image}`;
+    bannerTagline.innerHTML = slides[currentIndex].tagLine;
+
+    // Mettre le point actif
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('dot_selected', index === currentIndex);
+    });
+}
+
+// clics avec les fleche 
 arrowLeft.addEventListener('click', () => {
-    console.log("Flèche gauche cliquée");
-    
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length; 
+    updateSlide();
 });
 
 arrowRight.addEventListener('click', () => {
-    console.log("Flèche droite cliquée");
-    
+    currentIndex = (currentIndex + 1) % slides.length; 
+    updateSlide();
 });
 
+updateSlide();
